@@ -21,14 +21,23 @@ const HomeText = () => {
     };
 
     const handleAboutMeClick = () => {
+        //added to prevent the button clicks from triggering the parent div's handleClick function
+        e.stopPropagation();
+        
         console.log("About Me clicked");
     };
 
     const handleExperienceClick = () => {
+        //added to prevent the button clicks from triggering the parent div's handleClick function
+        e.stopPropagation();
+        
         console.log("Experience clicked");
     };
 
     const handleRepeatClick = () => {
+        //added to prevent the button clicks from triggering the parent div's handleClick function
+        e.stopPropagation();
+        
         setCurrentSentenceIndex(0);
         setShowButtons(false);
        
@@ -60,8 +69,9 @@ const HomeText = () => {
     };
 
     return (
-        <div style={wrapperStyle} onClick={handleClick}>
-            <div className='click-to-continue'>CLICK TO CONTINUE</div>
+        //removed onClick={handleClick} from top div and put it one down and in the <p>
+        <div style={wrapperStyle}>
+            <div className='click-to-continue' onClick={handleClick}>CLICK TO CONTINUE</div>
             <div style={containerStyle} className="text-container">
                 {showButtons ? (
                     <div>
@@ -70,7 +80,7 @@ const HomeText = () => {
                         <button onClick={handleRepeatClick}>3. Could you repeat that?</button>
                     </div>
                 ) : (
-                    <p>{sentences[currentSentenceIndex]}</p>
+                    <p onClick={handleClick}>{sentences[currentSentenceIndex]}</p>
                 )}
             </div>
             <img src="/images/richard.gif" alt="Animated GIF" style={imageStyle} className="rotating-image" />
